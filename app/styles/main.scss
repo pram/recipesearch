@@ -80,9 +80,17 @@ li+li{
   }
 }
 
+body > div > section.searchField {
+  text-align: center;
+}
+
+body > div:nth-child(1) > header > h1 {
+  text-align: center;
+}
+
 body > div > section.results > article {
   padding: 20px;
-  margin: 10px;
+  margin: 15px;
   background: #ff0030;
   color: #fff;
   font-size: 21px;
