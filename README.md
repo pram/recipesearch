@@ -14,3 +14,5 @@ Running `grunt test` will run the unit tests with karma.
 ## Requirements
 
 [Elasticsearch](https://www.elastic.co/products/elasticsearch)
+
+Download source file
