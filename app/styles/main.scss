@@ -80,6 +80,10 @@ li+li{
   }
 }
 
+body > div > section.results > article {
+  color: #F10C0C
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
