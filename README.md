@@ -19,4 +19,4 @@ Download source file from [here](http://openrecip.es/)
 
 install node  
 install elasticsearch node module  
-
+    npm install https://github.com/GraFiddle/angular-chart
