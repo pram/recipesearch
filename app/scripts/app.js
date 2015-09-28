@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'elasticsearch',
-    'angularChart'
+    'angularChart',
+    'ngMaterial'
   ],
   ['$locationProvider', function($locationProvider){
         $locationProvider.html5Mode(true);
