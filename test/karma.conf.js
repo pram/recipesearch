@@ -35,6 +35,8 @@ module.exports = function(config) {
       'bower_components/d3/d3.js',
       'bower_components/c3/c3.js',
       'bower_components/angular-chart/angular-chart.js',
+      'bower_components/angular-aria/angular-aria.js',
+      'bower_components/angular-material/angular-material.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
