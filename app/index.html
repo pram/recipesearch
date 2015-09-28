@@ -36,6 +36,12 @@
     </form>
   </section>
 
+  <md-input-container class="flex md-default-theme">
+    <label for="input_478">Name</label>
+    <input type="text" class="md-input" id="input_478" ng-model='searchTerm'>
+    <input type="submit" class="md-input">
+  </md-input-container>
+
   <section class='results'>
     <div class='no-recipes' ng-hide='recipes.length'>No results</div>
     <article class='recipe' ng-cloak ng-repeat='recipe in recipes'>
