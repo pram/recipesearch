@@ -88,11 +88,23 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-          base: [
+          /*base: [
              '.tmp',
              '<%= yeoman.app %>'
-          ],
+          ],*/
           middleware: function (connect, options) {
+            var middlewares = [];
+            middlewares.push(connect.static('.tmp'));
+            middlewares.push(connect().use(
+                '/bower_components',
+                connect.static('./bower_components')
+              ));
+            middlewares.push(connect().use(
+                '/app/styles',
+                connect.static('./app/styles')
+              ));
+            middlewares.push(connect.static(appConfig.app));
+            middlewares.push(proxySnippet);
             /*return [
               connect.static('.tmp'),
               connect().use(
@@ -105,12 +117,12 @@ module.exports = function (grunt) {
               ),
               connect.static(appConfig.app)
             ];*/
-            var middlewares = [];
-            options.base.forEach(function(base) {
+            
+            /*options.base.forEach(function(base) {
                 // Serve static files.
                 middlewares.push(connect.static(base));
-            });
-            middlewares.push(proxySnippet);
+            });*/
+            /*middlewares.push(proxySnippet);*/
             return middlewares;
           }
         }
