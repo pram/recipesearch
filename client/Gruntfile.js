@@ -105,24 +105,6 @@ module.exports = function (grunt) {
               ));
             middlewares.push(connect.static(appConfig.app));
             middlewares.push(proxySnippet);
-            /*return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];*/
-            
-            /*options.base.forEach(function(base) {
-                // Serve static files.
-                middlewares.push(connect.static(base));
-            });*/
-            /*middlewares.push(proxySnippet);*/
             return middlewares;
           }
         }
