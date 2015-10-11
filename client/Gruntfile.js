@@ -73,7 +73,7 @@ module.exports = function (grunt) {
     connect: {
       proxies: [
         {
-          context: '/',
+          context: '/sample/',
           host: 'localhost',
           port: 8080,
           xforward: true
@@ -88,8 +88,12 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
-            return [
+          base: [
+             '.tmp',
+             '<%= yeoman.app %>'
+          ],
+          middleware: function (connect, options) {
+            /*return [
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -100,7 +104,14 @@ module.exports = function (grunt) {
                 connect.static('./app/styles')
               ),
               connect.static(appConfig.app)
-            ];
+            ];*/
+            var middlewares = [];
+            options.base.forEach(function(base) {
+                // Serve static files.
+                middlewares.push(connect.static(base));
+            });
+            middlewares.push(proxySnippet);
+            return middlewares;
           }
         }
       },
