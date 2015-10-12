@@ -1,3 +1,3 @@
 # RecipeSearch
 
-Interesting things afoot!
+Download file from [OpenRecipes](http://openrecip.es/)
