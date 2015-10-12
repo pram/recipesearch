@@ -12,6 +12,8 @@ object RecipesearchBuild extends Build {
   val ScalaVersion = "2.11.7"
   val ScalatraVersion = "2.4.0.RC3"
 
+  val ElasticsearchVersion = "1.7.2"
+
   lazy val project = Project (
     "recipesearch",
     file("."),
@@ -28,7 +30,10 @@ object RecipesearchBuild extends Build {
         "org.scalatra" %% "scalatra-specs2" % ScalatraVersion % "test",
         "ch.qos.logback" % "logback-classic" % "1.1.2" % "runtime",
         "org.eclipse.jetty" % "jetty-webapp" % "9.2.10.v20150310" % "container",
-        "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided"
+        "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
+        "org.elasticsearch" % "elasticsearch" % ElasticsearchVersion,
+        "com.typesafe.akka" %% "akka-actor" % "2.3.4",
+        "net.databinder.dispatch" %% "dispatch-core" % "0.11.1"
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(
