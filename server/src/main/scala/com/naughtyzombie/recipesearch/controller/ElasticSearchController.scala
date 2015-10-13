@@ -8,7 +8,7 @@ import org.scalatra.{Accepted, FutureSupport, ScalatraServlet}
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
-class ElasticSearchController(system: ActorSystem, esActor: ActorRef) extends ScalatraServlet with FutureSupport {
+class ElasticSearchController(system: ActorSystem, esActor: ActorRef, esIndexer: ActorRef) extends ScalatraServlet with FutureSupport {
 
   implicit val timeout = new Timeout(2 seconds)
   protected implicit def executor: ExecutionContext = system.dispatcher
@@ -20,6 +20,10 @@ class ElasticSearchController(system: ActorSystem, esActor: ActorRef) extends Sc
   get("/tell") {
     esActor ! "y"
     Accepted()
+  }
+
+  post("/indexfile") {
+    esIndexer ? params("fileURL")
   }
 
 }
