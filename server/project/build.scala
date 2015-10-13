@@ -33,7 +33,8 @@ object RecipesearchBuild extends Build {
         "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
         "org.elasticsearch" % "elasticsearch" % ElasticsearchVersion,
         "com.typesafe.akka" %% "akka-actor" % "2.3.4",
-        "net.databinder.dispatch" %% "dispatch-core" % "0.11.1"
+        "net.databinder.dispatch" %% "dispatch-core" % "0.11.1",
+        "commons-io" % "commons-io" % "2.4"
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(
