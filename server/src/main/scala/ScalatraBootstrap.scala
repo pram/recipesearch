@@ -1,7 +1,7 @@
 import _root_.akka.actor.{ActorSystem, Props}
 import com.naughtyzombie.recipesearch._
 import com.naughtyzombie.recipesearch.actor.{EsIndexer, EsActor}
-import com.naughtyzombie.recipesearch.controller.{ElasticSearchController, GreetingController}
+import com.naughtyzombie.recipesearch.controller.{FileController, ElasticSearchController, GreetingController}
 import org.scalatra._
 import javax.servlet.ServletContext
 
@@ -16,6 +16,7 @@ class ScalatraBootstrap extends LifeCycle {
   override def init(context: ServletContext) {
     context.mount(new RecipeSearchServlet, "/*")
     context.mount(new GreetingController, "/sample/*")
+    context.mount(new FileController(system), "/file/*")
     context.mount(new ElasticSearchController(system, esActor, esIndexer),"/actors/*")
 
     server.start()
