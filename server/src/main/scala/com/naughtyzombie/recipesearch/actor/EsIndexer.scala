@@ -5,6 +5,6 @@ import akka.actor.Actor
 class EsIndexer extends Actor {
   def receive = {
     case "x" => sender ! "Hello"
-    case "y" => "goooober"
+    case "y" => println("sss")
   }
 }

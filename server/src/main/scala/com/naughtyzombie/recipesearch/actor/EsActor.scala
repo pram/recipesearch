@@ -4,7 +4,7 @@ import akka.actor.{Actor, ActorLogging, Props}
 import akka.event.LoggingReceive
 import com.naughtyzombie.recipesearch.actor.EsActor.{QueryResults, StartQuery}
 import com.naughtyzombie.recipesearch.executor.RequestExecutor
-import dispatch.as.String
+import akka.pattern.pipe
 import org.elasticsearch.action.search.{SearchResponse, SearchType}
 import org.elasticsearch.client.Client
 
@@ -28,19 +28,15 @@ class EsActor(client: Client, index:String, types: Seq[String]) extends Actor wi
 
     RequestExecutor[SearchResponse]().execute(req).map { response =>
       import scala.collection.JavaConversions._
-      val recipes = response.getHits.hits().map(hit => println(hit)).toSeq
+      val recipes= response.getHits.map(a => a.sourceAsString()).toSeq
+      recipes.dropRight(1).map(_.toString)
     }
   }
 
   def receive = LoggingReceive {
-    case "x": StartQuery =>
+    case _ : StartQuery =>
         queryRecipes() map (QueryResults(_)) recover {
-
-        }
+          case ex => log.error(ex, s"Retrieving Recipes Failed")
+        } pipeTo sender()
   }
-
-  /*def receive = {
-    case "x" => sender ! "Hello"
-    case "y" => "goooober"
-  }*/
 }
