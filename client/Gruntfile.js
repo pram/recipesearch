@@ -95,6 +95,7 @@ module.exports = function (grunt) {
           middleware: function (connect, options) {
             var middlewares = [];
             var x = options;
+            x = x;
             middlewares.push(connect.static('.tmp'));
             middlewares.push(connect().use(
                 '/bower_components',
