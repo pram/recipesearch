@@ -1,10 +1,15 @@
 sudo: false
-language: node_js
-node_js:
-  - 'iojs'
-  - '0.12'
-  - '0.10'
-  - '4.1'
+language: scala
+
 before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'bower install'
+  - sh -c 'cd client && gem update --system'
+  - sh -c 'cd client && gem install sass --version "=3.4.17"'
+  - sh -c 'cd client && gem install compass --version "=1.0.1"'
+  - sh -c 'cd client && npm install -g yo bower grunt-cli gulp'
+  - sh -c 'cd client && npm install'
+  - sh -c 'cd client && bower install'
+
+
+script:
+  - sh -c 'cd client && grunt'
+  - sh -c 'cd server && sbt clean compile'
