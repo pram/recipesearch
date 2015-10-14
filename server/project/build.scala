@@ -34,6 +34,8 @@ object RecipesearchBuild extends Build {
         "org.elasticsearch" % "elasticsearch" % ElasticsearchVersion,
         "com.typesafe.akka" %% "akka-actor" % "2.3.4",
         "net.databinder.dispatch" %% "dispatch-core" % "0.11.1",
+        "org.scalatra" % "scalatra-json_2.11" % ScalatraVersion,
+        "org.json4s"   %% "json4s-jackson" % "3.3.0",
         "commons-io" % "commons-io" % "2.4"
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
