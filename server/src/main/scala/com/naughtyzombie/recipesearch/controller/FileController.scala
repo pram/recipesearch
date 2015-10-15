@@ -1,19 +1,18 @@
 package com.naughtyzombie.recipesearch.controller
 
 import java.io._
-import java.net.{URLConnection, URL}
+import java.net.URL
 import java.util.zip.GZIPInputStream
 
-import akka.actor.{Actor, ActorRef, ActorSystem}
-import akka.pattern.ask
+import akka.actor.ActorSystem
 import akka.util.Timeout
-import org.scalatra.{Accepted, FutureSupport, ScalatraServlet}
+import org.scalatra.{FutureSupport, ScalatraServlet}
 
 import scala.concurrent.ExecutionContext
-import scala.concurrent.duration._
-import scala.io.Source
-import java.net.URL;
-import java.net.URLConnection;
+import scala.concurrent.duration._;
+
+import org.json4s._
+import org.json4s.jackson.JsonMethods._
 
 class FileController(system: ActorSystem) extends ScalatraServlet with FutureSupport {
   implicit val timeout = new Timeout(2 seconds)
@@ -36,9 +35,9 @@ class FileController(system: ActorSystem) extends ScalatraServlet with FutureSup
 
     val takeWhile: Stream[String] = Stream.continually(reader.readLine()).takeWhile(_ != null)
 
-    takeWhile foreach {
-      println _
-      //todo pipe into esindexer here
+    takeWhile foreach { s =>
+      val jsonRecipe = parse(s)
+      println(pretty(jsonRecipe))
     }
 
   }

@@ -27,7 +27,7 @@ class EsActor() extends Actor with ActorLogging {
   def queryRecipes(): Future[Seq[String]] = {
 
     val client: Client = new TransportClient()
-    val index = "recipesearch"
+    val index = "recipes"
     val types: Seq[String] = "recipe" :: Nil
 
     val req = client.prepareSearch(index)
