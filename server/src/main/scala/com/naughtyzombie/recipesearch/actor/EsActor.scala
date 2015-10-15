@@ -6,22 +6,30 @@ import com.naughtyzombie.recipesearch.actor.EsActor.{QueryResults, StartQuery}
 import com.naughtyzombie.recipesearch.executor.RequestExecutor
 import akka.pattern.pipe
 import org.elasticsearch.action.search.{SearchResponse, SearchType}
-import org.elasticsearch.client.Client
+import org.elasticsearch.client.transport.TransportClient
+import org.elasticsearch.client.{ElasticsearchClient, Client}
 
 import scala.concurrent.Future
 
 object EsActor {
-  def props(client: Client, index: String, types: Seq[String]): Props = Props(new EsActor(client, index, types))
+  def props(): Props = Props(new EsActor())
 
   case class StartQuery()
   case class QueryResults(recipes: Seq[String])
 }
 
-class EsActor(client: Client, index:String, types: Seq[String]) extends Actor with ActorLogging {
+class EsActor() extends Actor with ActorLogging {
+
+
 
   import context.dispatcher
 
   def queryRecipes(): Future[Seq[String]] = {
+
+    val client: Client = new TransportClient()
+    val index = "recipesearch"
+    val types: Seq[String] = "recipe" :: Nil
+
     val req = client.prepareSearch(index)
                 .setSearchType(SearchType.DEFAULT)
                 .setTypes(types: _*)

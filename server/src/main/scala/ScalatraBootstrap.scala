@@ -8,7 +8,7 @@ import javax.servlet.ServletContext
 class ScalatraBootstrap extends LifeCycle {
 
   val system = ActorSystem()
-  //val esActor = system.actorOf(Props[EsActor])
+  val esActor = system.actorOf(Props[EsActor])
   val esIndexer = system.actorOf(Props[EsIndexer])
 
   val server = new ElasticsearchServer
@@ -17,7 +17,7 @@ class ScalatraBootstrap extends LifeCycle {
     context.mount(new RecipeSearchServlet, "/*")
     context.mount(new GreetingController, "/sample/*")
     context.mount(new FileController(system), "/file/*")
-    //context.mount(new ElasticSearchController(system, esActor, esIndexer),"/actors/*")
+    context.mount(new ElasticSearchController(system, esActor, esIndexer),"/actors/*")
 
     server.start()
     server.createAndWaitForIndex("recipes")
