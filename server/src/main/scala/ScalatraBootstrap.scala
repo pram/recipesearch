@@ -16,7 +16,7 @@ class ScalatraBootstrap extends LifeCycle {
   override def init(context: ServletContext) {
     context.mount(new RecipeSearchServlet, "/*")
     context.mount(new GreetingController, "/sample/*")
-    context.mount(new FileController(system), "/file/*")
+    context.mount(new FileController(system, esIndexer), "/file/*")
     context.mount(new ElasticSearchController(system, esActor, esIndexer),"/actors/*")
 
     server.start()

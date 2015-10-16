@@ -4,18 +4,19 @@ import java.io._
 import java.net.URL
 import java.util.zip.GZIPInputStream
 
-import akka.actor.ActorSystem
+import akka.actor.{Actor, ActorRef, ActorSystem}
 import akka.util.Timeout
+import com.naughtyzombie.recipesearch.actor.EsIndexer
+import org.json4s.JsonDSL._
+import org.json4s._
+import org.json4s.jackson.JsonMethods._
 import org.scalatra.{FutureSupport, ScalatraServlet}
 
 import scala.concurrent.ExecutionContext
-import scala.concurrent.duration._;
+import scala.concurrent.duration._
 
-import org.json4s._
-import org.json4s.JsonDSL._
-import org.json4s.jackson.JsonMethods._
 
-class FileController(system: ActorSystem) extends ScalatraServlet with FutureSupport {
+class FileController(system: ActorSystem, indexer: ActorRef) extends ScalatraServlet with FutureSupport {
   implicit val timeout = new Timeout(2 seconds)
 
   protected implicit def executor: ExecutionContext = system.dispatcher
@@ -53,11 +54,8 @@ class FileController(system: ActorSystem) extends ScalatraServlet with FutureSup
         ("description" -> jsonRecipe \ "description")
 
       println(x)
-      /*println (x)
-      println(pretty(x))*/
-      //compact(jsonRecipe \ "ingredients").split("\\r?\\n"))
-      //jsonRecipe = jsonRecipe ~ ("id" -> jsonRecipe \\ "_id")
-      //parse(s) \\ "_id" \\ "$oid" - retrieves the id
+
+      indexer ! x
     }
 
   }
