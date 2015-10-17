@@ -7,3 +7,5 @@ start the server using
 
    sbt  
    > container:start
+
+start the client using
