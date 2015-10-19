@@ -1,12 +1,11 @@
 package com.naughtyzombie.recipesearch.controller
 
-import java.io._
+import java.io.{BufferedInputStream, BufferedReader, InputStreamReader}
 import java.net.URL
 import java.util.zip.GZIPInputStream
 
-import akka.actor.{Actor, ActorRef, ActorSystem}
+import akka.actor.{ActorRef, ActorSystem}
 import akka.util.Timeout
-import com.naughtyzombie.recipesearch.actor.EsIndexer
 import org.json4s.JsonDSL._
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
@@ -43,17 +42,21 @@ class FileController(system: ActorSystem, indexer: ActorRef) extends ScalatraSer
       /*val recipe = Recipe(
                           id = jsonRecipe \\ "_id" \\ "$oid"
       )*/
+
+      val ingredients = (jsonRecipe \ "ingredients").values.toString.split("\n").toList
+
       val x = ("id" -> jsonRecipe \ "_id" \ "$oid") ~
         ("name" -> jsonRecipe \ "name") ~
         ("source" -> jsonRecipe \ "source") ~
         ("recipeYield" -> jsonRecipe \ "recipeYield") ~
-        ("ingredients" , compact(jsonRecipe \ "ingredients")) ~
+        ("ingredients" , ingredients) ~
+        //("ingredients" , List("s","d","s")) ~
         ("prepTime" -> jsonRecipe \ "prepTime") ~
         ("cookTime" -> jsonRecipe \ "cookTime") ~
         ("datePublished" -> jsonRecipe \ "datePublished") ~
         ("description" -> jsonRecipe \ "description")
 
-      println(x)
+      println(pretty(render(x)))
 
       indexer ! x
     }
