@@ -11,7 +11,7 @@ class ScalatraBootstrap extends LifeCycle {
   val esActor = system.actorOf(Props[EsActor])
   val esIndexer = system.actorOf(Props[EsIndexer])
 
-  val server = new ElasticsearchServer
+  /*val server = new ElasticsearchServer*/
 
   override def init(context: ServletContext) {
     context.mount(new RecipeSearchServlet, "/*")
@@ -19,12 +19,12 @@ class ScalatraBootstrap extends LifeCycle {
     context.mount(new FileController(system, esIndexer), "/file/*")
     context.mount(new ElasticSearchController(system, esActor, esIndexer),"/actors/*")
 
-    server.start()
-    server.createAndWaitForIndex("recipes")
+/*    server.start()
+    server.createAndWaitForIndex("recipes")*/
   }
 
   override def destroy(context: ServletContext): Unit = {
-    server.stop()
-    system.shutdown()
+    /*server.stop()
+    system.shutdown()*/
   }
 }

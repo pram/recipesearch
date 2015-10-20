@@ -20,8 +20,6 @@ object EsActor {
 
 class EsActor() extends Actor with ActorLogging {
 
-
-
   import context.dispatcher
 
   def queryRecipes(): Future[Seq[String]] = {
