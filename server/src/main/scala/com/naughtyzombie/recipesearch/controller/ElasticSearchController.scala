@@ -3,7 +3,7 @@ package com.naughtyzombie.recipesearch.controller
 import akka.actor.{Actor, ActorRef, ActorSystem}
 import akka.pattern.ask
 import akka.util.Timeout
-import com.naughtyzombie.recipesearch.actor.EsActor.StartQuery
+import com.naughtyzombie.recipesearch.actor.EsActor.{QueryResults, StartQuery}
 import org.scalatra.{Accepted, FutureSupport, ScalatraServlet}
 
 import scala.concurrent.ExecutionContext
@@ -16,6 +16,7 @@ class ElasticSearchController(system: ActorSystem, esActor: ActorRef, esIndexer:
 
   get("/ask") {
     esActor ! StartQuery()
+    QueryResults
   }
 
   get("/tell") {
