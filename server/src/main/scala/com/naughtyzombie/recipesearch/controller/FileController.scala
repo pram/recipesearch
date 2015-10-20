@@ -50,13 +50,10 @@ class FileController(system: ActorSystem, indexer: ActorRef) extends ScalatraSer
         ("source" -> jsonRecipe \ "source") ~
         ("recipeYield" -> jsonRecipe \ "recipeYield") ~
         ("ingredients" , ingredients) ~
-        //("ingredients" , List("s","d","s")) ~
         ("prepTime" -> jsonRecipe \ "prepTime") ~
         ("cookTime" -> jsonRecipe \ "cookTime") ~
         ("datePublished" -> jsonRecipe \ "datePublished") ~
         ("description" -> jsonRecipe \ "description")
-
-      println(pretty(render(x)))
 
       indexer ! x
     }
