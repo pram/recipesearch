@@ -8,6 +8,7 @@ import akka.pattern.pipe
 import org.elasticsearch.action.search.{SearchResponse, SearchType}
 import org.elasticsearch.client.transport.TransportClient
 import org.elasticsearch.client.{ElasticsearchClient, Client}
+import org.elasticsearch.common.transport.InetSocketTransportAddress
 
 import scala.concurrent.Future
 
@@ -24,7 +25,8 @@ class EsActor() extends Actor with ActorLogging {
 
   def queryRecipes(): Future[Seq[String]] = {
 
-    val client: Client = new TransportClient()
+    val client = new TransportClient()
+    client addTransportAddress(new InetSocketTransportAddress("0.0.0.0", 9300))
     val index = "recipes"
     val types: Seq[String] = "recipe" :: Nil
 
@@ -40,7 +42,7 @@ class EsActor() extends Actor with ActorLogging {
   }
 
   def receive = LoggingReceive {
-    case _ : StartQuery =>
+    case q : StartQuery =>
         queryRecipes() map (QueryResults(_)) recover {
           case ex => log.error(ex, s"Retrieving Recipes Failed")
         } pipeTo sender()
