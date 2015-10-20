@@ -42,7 +42,7 @@ class EsActor() extends Actor with ActorLogging {
   }
 
   def receive = LoggingReceive {
-    case q : StartQuery =>
+    case query: StartQuery =>
         queryRecipes() map (QueryResults(_)) recover {
           case ex => log.error(ex, s"Retrieving Recipes Failed")
         } pipeTo sender()
