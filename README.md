@@ -5,7 +5,7 @@ Download file from [OpenRecipes](http://openrecip.es/)
 
 start the server using
 
-   sbt  
-   > container:start
+    sbt  
+    > container:start
 
 start the client using
