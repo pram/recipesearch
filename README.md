@@ -16,3 +16,9 @@ start the client using
 To run the loader - If you just want to get some data into the system. Make sure an external elastic search is running
 
     cd loader
+    npm install elasticsearch request
+    node download_file.js
+    //TODO extract the file. Do it manually for now
+    node load_recipes.js
+
+ 
