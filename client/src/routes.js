@@ -18,9 +18,7 @@ const router = new Router(on => {
   });
 
   on('/contact', async () => <ContactPage />);
-
   on('/login', async () => <LoginPage />);
-
   on('/register', async () => <RegisterPage />);
 
   on('*', async (state) => {
