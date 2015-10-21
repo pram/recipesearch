@@ -1,6 +1,7 @@
 package com.naughtyzombie.recipesearch.executor
 
-import org.elasticsearch.action.{ActionRequestBuilder, ActionListener, ActionResponse}
+import org.elasticsearch.action.{ActionListener, ActionRequestBuilder, ActionResponse}
+
 import scala.concurrent.{Future, Promise}
 
 object RequestExecutor {

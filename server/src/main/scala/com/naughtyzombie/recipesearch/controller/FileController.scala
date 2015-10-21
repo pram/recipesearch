@@ -39,9 +39,6 @@ class FileController(system: ActorSystem, indexer: ActorRef) extends ScalatraSer
 
     takeWhile foreach { s =>
       val jsonRecipe = parse(s)
-      /*val recipe = Recipe(
-                          id = jsonRecipe \\ "_id" \\ "$oid"
-      )*/
 
       val ingredients = (jsonRecipe \ "ingredients").values.toString.split("\n").toList
 

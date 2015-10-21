@@ -1,6 +1,7 @@
 package com.naughtyzombie.recipesearch
 
 import java.nio.file.Files
+
 import org.apache.commons.io.FileUtils
 import org.elasticsearch.client.Client
 import org.elasticsearch.common.settings.ImmutableSettings

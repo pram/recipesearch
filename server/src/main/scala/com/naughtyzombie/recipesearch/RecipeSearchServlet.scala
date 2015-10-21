@@ -1,8 +1,5 @@
 package com.naughtyzombie.recipesearch
 
-import org.scalatra._
-import scalate.ScalateSupport
-
 class RecipeSearchServlet extends RecipesearchStack {
 
   get("/") {

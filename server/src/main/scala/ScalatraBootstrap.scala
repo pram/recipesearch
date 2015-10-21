@@ -1,9 +1,10 @@
+import javax.servlet.ServletContext
+
 import _root_.akka.actor.{ActorSystem, Props}
 import com.naughtyzombie.recipesearch._
-import com.naughtyzombie.recipesearch.actor.{EsIndexer, EsActor}
-import com.naughtyzombie.recipesearch.controller.{FileController, ElasticSearchController, GreetingController}
+import com.naughtyzombie.recipesearch.actor.{EsActor, EsIndexer}
+import com.naughtyzombie.recipesearch.controller.{ElasticSearchController, FileController, GreetingController}
 import org.scalatra._
-import javax.servlet.ServletContext
 
 class ScalatraBootstrap extends LifeCycle {
 
