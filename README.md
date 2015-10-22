@@ -12,6 +12,9 @@ start the server using
 start the client using
 
     cd client
+    npm start
+    
+Navigate to (http://localhost)
 
 To run the loader - If you just want to get some data into the system. Make sure an external elastic search is running
 
