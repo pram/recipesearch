@@ -7,6 +7,7 @@ import withStyles from '../../decorators/withStyles';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
+import ListDisplay from '../ListDisplay';
 
 @withContext
 @withStyles(styles)
@@ -24,6 +25,7 @@ class App extends Component {
         {this.props.children}
         <Feedback />
         <Footer />
+        <ListDisplay />
       </div>
     ) : this.props.children;
   }

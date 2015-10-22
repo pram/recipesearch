@@ -1,0 +1,6 @@
+{
+  "name": "ListDisplay",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ListDisplay.js"
+}
