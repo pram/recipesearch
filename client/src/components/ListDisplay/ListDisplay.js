@@ -82,7 +82,7 @@ class FilterableProductTable extends Component{
       </div>
     );
   }
-};
+}
 
 export default FilterableProductTable;
 
@@ -101,7 +101,7 @@ class ListDisplay extends Component {
     return (
       <FilterableProductTable products={PRODUCTS} />
     );
-    document.getElementById('container');
+    /*document.getElementById('container');*/
   }
 }
 export default ListDisplay;
