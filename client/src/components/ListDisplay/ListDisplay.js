@@ -4,12 +4,23 @@ import styles from './ListDisplay.css';
 
 @withStyles(styles)
 class ListDisplay extends Component {
-  static propTypes = {
-    maxLines: PropTypes.number,
-  };
+  getInitialState() {
+    return {
+      username: '',
+      lastGistUrl: ''
+    };
+  }
 
-  static defaultProps = {
-    maxLines: 6,
+  componentDidMount() {
+    $.get(this.props.source, function (result) {
+      var lastGist = result[0];
+      if (this.isMounted()) {
+        this.setState({
+          username: lastGist.owner.login,
+          lastGistUrl: lastGist.html_url
+        });
+      }
+    }.bind(this));
   };
 
   render() {
