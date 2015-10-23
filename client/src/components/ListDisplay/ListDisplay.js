@@ -9,23 +9,13 @@ class ListDisplay extends Component {
   };
 
   static defaultProps = {
-    maxLines: 1,
+    maxLines: 6,
   };
-
-  getInitialState() {
-    return ({recipes: []});
-  }
-
-  componentDidMount() {
-    client({method: 'GET', path: 'http://localhost:8080/actors/ask'}).done(response => {
-      this.setState({recipes: response.entity._embedded.recipes});
-    });
-  }
 
   render() {
     return (
       <div className="ListDisplay">
-        <p className="ListDisplay-input">{this.state.recipes}</p>
+        <p className="ListDisplay-input">This is the {this.props.maxLines}</p>
       </div>
     );
   }
