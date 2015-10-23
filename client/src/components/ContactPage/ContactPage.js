@@ -3,6 +3,7 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './ContactPage.css';
 import withStyles from '../../decorators/withStyles';
+import ListDisplay from '../ListDisplay';
 
 @withStyles(styles)
 class ContactPage extends Component {
@@ -19,6 +20,7 @@ class ContactPage extends Component {
         <div className="ContactPage-container">
           <h1>{title}</h1>
           <p>...</p>
+          <ListDisplay />
         </div>
       </div>
     );
