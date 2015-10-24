@@ -6,12 +6,7 @@ import ProductTable from './ProductTable';
 
 @withStyles(styles)
 class FilterableProductTable extends Component {
-  /*getInitialState() {
-    return {
-      filterText: '',
-      inStockOnly: false
-    };
-  };*/
+
   constructor() {
     super();
     this.state = {
@@ -20,12 +15,20 @@ class FilterableProductTable extends Component {
     };
   }
 
+  handleUserInput(filterText, inStockOnly) {
+    this.setState({
+      filterText: filterText,
+      inStockOnly: inStockOnly
+    });
+  }
+
   render() {
     return (
       <div>
         <SearchBar
           filterText={this.state.filterText}
           inStockOnly={this.state.inStockOnly}
+          onUserInput={this.handleUserInput}
           />
         <ProductTable
           products={this.props.products}
