@@ -11,11 +11,7 @@ class SearchBar extends Component {
     onUserInput: PropTypes.func
   }
 
-  static defaultProps = {
-    onUserInput: () => {}
-  }
-
-  handleChange() {
+  handleChange(e) {
     this.props.onUserInput(
       this.refs.filterTextInput.value,
       this.refs.inStockOnlyInput.checked
@@ -30,7 +26,7 @@ class SearchBar extends Component {
           placeholder="Search..."
           value={this.props.filterText}
           ref="filterTextInput"
-          onChange={this.handleChange}
+          onChange={this.handleChange.bind(this)}
           />
 
         <p>
@@ -38,7 +34,7 @@ class SearchBar extends Component {
             type="checkbox"
             checked={this.props.inStockOnly}
             ref="inStockOnlyInput"
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(this)}
             />
           {' '}
           Only show products in stock
