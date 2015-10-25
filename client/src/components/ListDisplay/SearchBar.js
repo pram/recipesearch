@@ -2,15 +2,20 @@ import React, { PropTypes, Component } from 'react';
 import withStyles from '../../decorators/withStyles';
 import styles from './ListDisplay.css';
 
-@withStyles(styles) class SearchBar extends Component {
+@withStyles(styles)
+class SearchBar extends Component {
+
+  static propTypes = {
+    //onUserInput: PropTypes.object,
+  };
+
   handleChange() {
-    this.props.onUserInput(
-      this.refs.filterTextInput.value,
-      this.refs.inStockOnlyInput.checked
-    );
-  }
+    console.log(this.props);
+  };
+
 
   render() {
+    const { to, query, ...props } = this.props;
     return (
       <form>
         <input

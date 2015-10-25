@@ -11,7 +11,7 @@ class FilterableProductTable extends Component {
     super();
     this.state = {
       filterText: '',
-      inStockOnly: false
+      inStockOnly: false,
     };
   }
 
@@ -28,7 +28,7 @@ class FilterableProductTable extends Component {
         <SearchBar
           filterText={this.state.filterText}
           inStockOnly={this.state.inStockOnly}
-          onUserInput={this.handleUserInput}
+          onUserInput={this.handleUserInput.bind(this)}
           />
         <ProductTable
           products={this.props.products}
