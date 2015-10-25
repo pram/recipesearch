@@ -15,8 +15,7 @@ class FilterableProductTable extends Component {
     };
   }
 
-  handleUserInput(filterText, inStockOnly/*, event*/) {
-    /*event.preventDefault();*/
+  handleUserInput(filterText, inStockOnly) {
     this.setState({
       filterText: filterText,
       inStockOnly: inStockOnly
