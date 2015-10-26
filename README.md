@@ -12,6 +12,7 @@ start the server using
 start the client using
 
     cd client
+    ?npm install?
     npm start
     
 Navigate to [FrontEnd](http://localhost:3000)
