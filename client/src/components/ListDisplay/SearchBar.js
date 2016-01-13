@@ -18,10 +18,17 @@ class SearchBar extends Component {
     );
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(e);
+    //this.props.onAdd($(e.target).find("input[name=search]").val())
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit.bind(this)}>
         <input
+          name="search"
           type="text"
           placeholder="Search..."
           value={this.props.filterText}
